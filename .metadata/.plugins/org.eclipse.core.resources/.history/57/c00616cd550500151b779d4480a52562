@@ -14,7 +14,7 @@ public class MyLocation implements LocationListener {
 	Criteria criteria = new Criteria();
 	String provider;
 	Location location;
-	public final static  String LOCATION_TAG = "location_log";
+	public final String LOCATION_TAG = "location_log";
 
 	public MyLocation(Context context, LocationManager locationManager) {
 		try {
@@ -25,14 +25,14 @@ public class MyLocation implements LocationListener {
 			
 			if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 				locationManager.requestLocationUpdates(
-						LocationManager.GPS_PROVIDER, 20000, 100, this);
+						LocationManager.GPS_PROVIDER, 2000, 10, this);
 				Log.i(LOCATION_TAG, "Gps provider");
 			} else if (locationManager
 					.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
 				
 				Log.i(LOCATION_TAG, "network provider");
 				locationManager.requestLocationUpdates(
-						LocationManager.NETWORK_PROVIDER, 20000, 100, this);
+						LocationManager.NETWORK_PROVIDER, 2000, 10, this);
 			}
 			
 			location = locationManager.getLastKnownLocation(provider);
@@ -75,9 +75,10 @@ public class MyLocation implements LocationListener {
 
 	@Override
 	public void onLocationChanged(android.location.Location location) {
-		
-		location = location;
-		Log.i(LOCATION_TAG, "latitude changed: "+getLatitude());
+		locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
+				2000, 10, this);
+		location = locationManager.getLastKnownLocation(provider);
+		Log.i(LOCATION_TAG, "latitude: "+getLatitude());
 
 	}
 

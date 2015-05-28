@@ -25,14 +25,14 @@ public class MyLocation implements LocationListener {
 			
 			if (locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
 				locationManager.requestLocationUpdates(
-						LocationManager.GPS_PROVIDER, 20000, 100, this);
+						LocationManager.GPS_PROVIDER, 20000, 10, this);
 				Log.i(LOCATION_TAG, "Gps provider");
 			} else if (locationManager
 					.isProviderEnabled(LocationManager.NETWORK_PROVIDER)){
 				
 				Log.i(LOCATION_TAG, "network provider");
 				locationManager.requestLocationUpdates(
-						LocationManager.NETWORK_PROVIDER, 20000, 100, this);
+						LocationManager.NETWORK_PROVIDER, 20000, 10, this);
 			}
 			
 			location = locationManager.getLastKnownLocation(provider);
