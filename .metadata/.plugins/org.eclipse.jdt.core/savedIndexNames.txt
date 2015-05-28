@@ -1,0 +1,13 @@
+INDEX VERSION 1.126+C:\Users\CLAUDY\Desktop\CityGuide\.metadata\.plugins\org.eclipse.jdt.core
+768771971.index
+3823145410.index
+897083921.index
+2558344253.index
+2975400030.index
+2772533105.index
+3281036873.index
+1517776030.index
+1282324314.index
+2493559187.index
+2241927111.index
+556943436.index

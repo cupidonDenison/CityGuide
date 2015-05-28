@@ -1,0 +1,58 @@
+package com.example.cityguide;
+
+import java.util.ArrayList;
+
+import android.app.Activity;
+import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
+import android.os.Bundle;
+import android.util.Log;
+
+import com.example.cityguide.callbackinterface.PlaceResponseListener;
+import com.example.cityguide.callbackinterface.PlaceResponseManager;
+import com.example.cityguide.entity.Place;
+import com.example.cityguide.location.MyLocation;
+
+public class SplashActivity extends Activity {
+	
+	
+	//public static final String SERVER_IP = "http://192.168.137.1/project";
+	public static final String SERVER_IP = "http://192.168.1.7/project";
+	public static Location myLocation;
+	LocationManager locationManager;
+	private final String SPLASH_TAG ="splash_log";
+	public static Context appContext;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.activity_splash);
+		getActionBar().hide();
+		appContext = getApplicationContext();
+		
+		Log.i(SPLASH_TAG, "Splash screen launch");
+		locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+		myLocation = new MyLocation(this, locationManager).getLocation();
+		
+		if(myLocation != null){
+			Log.i(SPLASH_TAG, "latitude: "+myLocation.getLatitude());
+		}
+		
+		
+		PlaceResponseManager.getPlaces(this, "restaurant", new PlaceResponseListener() {
+			
+			@Override
+			public void getPlace(ArrayList<Place> response) {
+				Log.i(SPLASH_TAG,"Place size: "+response.size());
+				
+			}
+		});
+		
+		
+		
+	}//End onCreate
+
+	
+	
+}//End activity
